@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>
+      Training
+    </title>
+  </head>
+  <body>
+<!--
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="bland-logo"><i class="material-icons">music_note</i>Harmony training</a>
+      </div>
+    </nav>
+-->
+<nav class="teal">
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo left">
+      <i class="material-icons">music_note</i>Training
+    </a>
+  </div>
+</nav>
+
+    <div class="container">
+      <div id="selectPage">
+        <div class="row"></div> <!-- 画面上部の余白を確保-->
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <form id="selectQuestion" class="col s10 m6 l6 xl6">
+            <label>Questions</label>
+            <input id="questions" type="number" value="0" min="0">
+          </form>
+          <div class="col s1 m3 l3 xl3"></div>
+        </div>
+
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <div class="input-field col s10 m6 l6 xl6">
+              <select id="interval">
+<!--              <option value="" disabled selected>Choose Interval</option> -->
+              <option value="P1">完全1度</option>
+              <option value="m2">短2度</option>
+              <option value="M2">長2度</option>
+              <option value="m3">短3度</option>
+              <option value="M3">長3度</option>
+              <option value="P4">完全4度</option>
+              <option value="P5">完全5度</option>
+              <option value="m6">短6度</option>
+              <option value="M6">長6度</option>
+              <option value="m7">短7度</option>
+              <option value="M7">長7度</option>
+              <option value="P8">完全8度</option>
+            </select>
+            <label>Interval</label>
+          </div>
+          <div class="col s1 m3 l3 xl3"></div>
+        </div>
+
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <div class="input-field col s10 m6 l6 xl6">
+            <select id="intervalType">
+<!--              <option value="" disabled selected>Choose Interval-type</option> -->
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+            <label>IntervalType</label>
+          </div>
+          <div class="col s1 m3 l3 xl3"></div>
+        </div>
+
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <div class="input-field col s10 m6 l6 xl6">
+            <select id="accidental">
+<!--              <option value="" disabled selected>Choose Accidental</option> -->
+              <option value="sharp">sharp</option>
+              <option value="flat">flat</option>
+            </select>
+            <label>Accidental</label>
+          </div>
+          <div class="col s1 m3 l3 xl3"></div>
+        </div>
+
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <button id="play_button" class="btn waves-effect waves-light" type="submit" name="action">play
+            <i class="material-icons right">play_arrow</i>
+          </button>
+        </div>
+      </div> <!-- selectPage -->
+
+      <div id="questionPage" class="hide card-panel">
+<!--        <div class="row"></div> <!-- 画面上部の余白を確保 -->
+        <div class="row">
+          <div class="col s8 m10 l10 xl10"></div>
+            <button id="exit_button" class="btn waves-ffect waves-light col s4 m2 l2 xl2" type="" name="action">EXIT
+              <i class="material-icons right">exit_to_app</i>
+            </button>
+        </div>
+        <div class="row">
+          <div class="center">
+            <h2>Sing with caution</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s2 m3 l4 xl4"></div>
+          <div id="sheet" class="card-panel"></div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12 l12 xl12 center">
+            <button id="play_firstSound" class="btn waves-effect waves-light" type="" name="action">PLAY
+              <i class="material-icons">play_arrow</i>
+            </button>
+            <button id="play_secondSound" class="btn waves-effect waves-light" type="" name="action">PLAY
+              <i class="material-icons">play_arrow</i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12 l12 xl12 center">
+            <div id="answers">
+              <button id="succeed_button" class="btn waves-effect waves-light" type="" name="action">SUCCEED</button>
+              <button id="failed_button" class="btn waves-effect waves-light" type="" name="action">&nbsp;FAILED&nbsp;</button>
+            </div>
+            <div id="next" class="hide">
+              <button id="next_button" class="btn waves-effect waves-light" type="" name="action">NEXT</button>
+            </div>
+          </div>
+        </div>
+      </div> <!-- questionPage -->
+
+      <div id="resultPage" class="hide">
+        <div class="row">
+          <div id="result" class="card-panel"></div>
+          <button id="top_button" class="btn waves-ffect waves-light" type="" name="action">TOP</button>
+        </div>
+      </div> <!-- resultPage -->
+<!--
+      <div class="row">
+        <button id="debug_button" class="btn waves-ffect waves-light" type="" name="action">DEBUG</button>
+      </div>
+-->
+    </div> <!-- container -->
+
+
+    <!-- Inport jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://tonejs.github.io/build/Tone.min.js"></script>
+    <script src="./js/abcjs_basic_5.3.5-min.js"></script>
+
+    <script>
+      // グローバル変数宣言
+      var sharpSoundArray = ["G3","G#3","A3","A#3","B3",
+                             "C4","C#4","D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4",
+                             "C5","C#5","D5","D#5","E5","F5","F#5","G5","G#5","A5","A#5","B5",
+                             "C6"];
+      var flatSoundArray = ["G3","Ab3","A3","B3",
+                            "C4","Db4","D4","Eb4","E4","F4","Gb4","G4","Ab4","A4","Bb4","B4",
+                            "C5","Db5","D5","Eb5","E5","F5","Gb5","G5","Ab5","A5","Bb5","B5",
+                            "C6","Db6"];
+      var intervalArray = ["P1","m2","M2","m3","M3","P4","-","P5","m6","M6","m7","M7","P8"];
+
+      var totalQuestions = 0;
+      var totalSucceed = 0;
+      var totalFailed = 0;
+
+      //関数定義
+      function initializeSelector(){
+        // selectのelementを初期化 https://materializecss.com/select.html#initialization
+        $(document).ready(function(){
+        $('select').formSelect();
+        });
+      }
+      function debug(){
+        console.log("=== This is debug ===");
+        console.log("questions:"+questions);
+        console.log("interval:"+interval);
+        console.log("intervalType:"+intervalType);
+        console.log("firstSound:"+firstSound);
+        console.log("secondSound:"+secondSound);
+        console.log("accidental:"+accidental);
+        console.log("soundArray.length:"+soundArray.length);
+        console.log("totalQuestions:"+totalQuestions);
+        console.log("totalSucceed:"+totalSucceed);
+        console.log("totalFailed:"+totalFailed);
+        console.log("firstNote:"+firstNote);
+        console.log("secondNote:"+secondNote);
+      }
+      function switchPage(present,next){
+        document.getElementById(present).classList.add("hide");
+        document.getElementById(next).classList.remove("hide");
+      }
+		  function load() {
+			  ABCJS.renderAbc("sheet", abc);
+  		}
+      function setAbc(){
+        firstNote = convertToNote(firstSound);
+        secondNote = convertToNote(secondSound);
+  		  abc = "L: 1/4\n" +
+              "I: papersize A3\n" +
+              "%%scale 1.5\n" +
+//              "%%staffwidth 500\n" +
+//              '%%responsive "resize"\n' +
+              firstNote + "|" + secondNote + "|";
+      }
+  		function convertToNote(sound){
+  			letter = [];
+  			for (i=0; i<sound.length; i++){
+  			letter.push(sound.substr(i,1));
+  			}
+  			if (letter[1] == "#"){
+  				note = "^"+letter[0];
+  			} else if (letter[1] == "b"){
+  				note = "_"+letter[0];
+  			} else {
+          note = letter[0];
+        }
+        letterTail = letter[letter.length - 1];
+        if (letterTail == "3"){
+          note = note + ",";
+        } else if (letterTail == "5"){
+          note = note.toLowerCase(note);
+        } else if (letterTail == "6"){
+          note = note + "'";
+        }
+  			return note;
+  		}
+      function getRandomInt(min, max) {
+        var min = Math.ceil(min);
+        var max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+      }
+      function setSoundArray(accidental){
+        if (accidental == "sharp"){
+          soundArray = sharpSoundArray; //Global
+        } else if (accidental == "flat"){
+          soundArray = flatSoundArray; //Global
+        }
+      }
+      function setFirstSound(intervalType){
+        if (intervalType=="asc"){
+           var firstSound = soundArray[getRandomInt(0,17)]; //Global variable
+        } else if (intervalType=="desc"){
+           var firstSound = soundArray[getRandomInt(12,29)]; //Global variable
+        }
+        return firstSound;
+      }
+      function setSecondSound(interval,intervalType,firstSound){
+        var intervalId = intervalArray.indexOf(interval);
+        var firstSoundId = soundArray.indexOf(firstSound);
+        if (intervalType=="asc"){
+          var secondSound = soundArray[firstSoundId+intervalId];
+        } else if (intervalType=="desc"){
+          var secondSound = soundArray[firstSoundId-intervalId];
+        }
+        return secondSound;
+      }
+      function setQuestion(initialize){
+        if (initialize == "true"){
+          questions = selectQuestion.questions.value; //Global
+          if (questions=="0"){
+            questions = "endless";
+          }
+          interval = $('#interval').val(); //Global
+          intervalType = $('#intervalType').val(); //Global
+          accidental = $('#accidental').val(); //Global
+        }
+        setSoundArray(accidental);
+        firstSound = setFirstSound(intervalType); //Global
+        secondSound = setSecondSound(interval,intervalType,firstSound); //Global
+        setAbc();
+        load();
+      }
+      function reduceCount(){
+        if (questions!="endless"){
+          questions--
+        }
+        if (questions=="0"){
+          switchPage("questionPage","resultPage");
+          displayRresult();
+        }
+      }
+      function playSound(sound,length){
+        var synth = new Tone.Synth().toMaster();
+        synth.triggerAttackRelease(sound,length);
+      }
+      function playFirstSound(){
+        playSound(firstSound,5);
+      }
+      function playSecondSound(){
+        playSound(secondSound,1);
+      }
+      function increaseCount(result){
+        if (result == "succeed"){
+          totalQuestions++;
+          totalSucceed++;
+        } else if (result == "failed"){
+          totalQuestions++;
+          totalFailed++;
+        }
+      }
+      function displayRresult(){
+        correctRate = totalSucceed/totalQuestions*100;
+        correctRate = Math.round(correctRate*10)/10; //小数点第二位で四捨五入
+        document.getElementById("result").innerHTML =
+          "<h4>"+"correctRate:"+correctRate+"%"+"</h4>"+
+          "<p>"+"intervalType:"+intervalType+"</p>"+
+          "<p>"+"interval:"+interval+"</p>"+
+          "<p>"+"accidental:"+accidental+"</p>"+
+          "<p>"+"totalQuestions:"+totalQuestions+"</p>"+
+          "<p>"+"totalSucceed:"+totalSucceed+"</p>"+
+          "<p>"+"totalFailed:"+totalFailed+"</p>";
+      }
+      function resetCount(){
+        totalQuestions = "";
+        totalSucceed = "";
+        totalFailed = "";
+      }
+
+      //イベントリスナー
+      //document.getElementById("play_button").addEventListener("click",function(){switchPage("selectPage","questionPage"),debug()},false);
+      document.getElementById("play_button").addEventListener("click",
+        function(){
+          switchPage("selectPage","questionPage");
+          var initialize = "true";
+          setQuestion(initialize);
+        }
+      );
+//      document.getElementById("debug_button").addEventListener("click",function(){debug()});
+      document.getElementById("play_firstSound").addEventListener("click",function(){playFirstSound()});
+      document.getElementById("play_secondSound").addEventListener("click",function(){playSecondSound()});
+      document.getElementById("succeed_button").addEventListener("click",
+        function(){
+          switchPage("answers","next");
+          increaseCount("succeed");
+        }
+      );
+      document.getElementById("failed_button").addEventListener("click",
+        function(){
+          switchPage("answers","next");
+          increaseCount("failed");
+        }
+      );
+      document.getElementById("next_button").addEventListener("click",
+        function(){
+          switchPage("next","answers");
+          var initialize = "false";
+          setQuestion(initialize);
+        }
+      );
+      document.getElementById("exit_button").addEventListener("click",
+        function(){
+          switchPage("questionPage","resultPage");
+          displayRresult();
+        }
+      );
+      document.getElementById("top_button").addEventListener("click",
+        function(){
+          switchPage("resultPage","selectPage");
+          resetCount();
+        }
+      );
+
+      window.onload = function(){
+        initializeSelector();
+      }
+    </script>
+
+  </body>
+</html>
