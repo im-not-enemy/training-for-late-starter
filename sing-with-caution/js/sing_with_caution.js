@@ -188,6 +188,7 @@ document.getElementById("failed_button").addEventListener("click",
 );
 document.getElementById("next_button").addEventListener("click",
   function(){
+    reduceCount();
     switchPage("next","answers");
     var initialize = "false";
     setQuestion(initialize);
