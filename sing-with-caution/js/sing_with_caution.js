@@ -137,6 +137,13 @@ function playFirstSound(){
 function playSecondSound(){
   playSound(secondSound,1);
 }
+function playBothSound(){
+  var first = new Tone.Synth().toMaster();
+  var second = new Tone.Synth().toMaster();
+  first.triggerAttackRelease(firstSound,3);
+  second.triggerAttackRelease(secondSound,3);
+  Tone.Transport.start();
+}
 function increaseCount(result){
   if (result == "succeed"){
     totalQuestions++;
@@ -174,6 +181,7 @@ document.getElementById("play_button").addEventListener("click",
 );
 document.getElementById("play_firstSound").addEventListener("click",function(){playFirstSound()});
 document.getElementById("play_secondSound").addEventListener("click",function(){playSecondSound()});
+document.getElementById("play_bothSound").addEventListener("click",function(){playBothSound()});
 document.getElementById("succeed_button").addEventListener("click",
   function(){
     switchPage("answers","next");
