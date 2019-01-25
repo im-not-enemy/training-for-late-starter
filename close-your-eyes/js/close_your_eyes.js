@@ -9,9 +9,15 @@ var flatSoundArray = ["G3","Ab3","A3","B3",
                       "C6","Db6"];
 var intervalArray = ["P1","m2","M2","m3","M3","P4","-","P5","m6","M6","m7","M7","P8"];
 
+var checkboxStatusArray = [];
+
 //関数定義
 function debug(){
   console.log("=== This is debug ===");
+
+  setCheckboxStatus();
+  console.log("checkboxStatusArray:"+checkboxStatusArray);
+//  console.log("preId:"+preId);
   console.log("intervalId:"+intervalId);
   console.log("interval:"+interval);
   console.log("intervalType:"+intervalType);
@@ -19,14 +25,26 @@ function debug(){
   console.log("firstSound:"+firstSound);
   console.log("secondSound:"+secondSound);
 }
-
+function setCheckboxStatus(){
+  checkboxStatusArray.length = 0;
+  var selectedIntervals = document.forms.selectedIntervals;
+  for (var i=0; i<selectedIntervals.length; i++){
+    var id = selectedIntervals[i].id;
+    var checked = selectedIntervals[i].checked;
+    if (checked == true){
+      checkboxStatusArray.push(intervalArray.indexOf(id));
+    }
+  }
+}
 function getRandomInt(min, max) {
   var min = Math.ceil(min);
   var max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 function setQuestion(){
-  intervalId = getRandomInt(0,13);
+  setCheckboxStatus();
+  preId = getRandomInt(0,checkboxStatusArray.length);
+  intervalId = checkboxStatusArray[preId];
   interval = intervalArray[intervalId];
   if (interval == "-"){
     setQuestion();
@@ -129,3 +147,5 @@ function exit(){
 document.getElementById("play_button").addEventListener("click",function(){setQuestion(); debug(); loop="true"; play();});
 document.getElementById("stop_button").addEventListener("click",function(){stop()});
 document.getElementById("exit_button").addEventListener("click",function(){exit()});
+
+document.getElementById("debug_button").addEventListener("click",function(){debug();});
