@@ -10,6 +10,7 @@ var flatSoundArray = ["G3","Ab3","A3","B3",
 var intervalArray = ["P1","m2","M2","m3","M3","P4","-","P5","m6","M6","m7","M7","P8"];
 
 var checkboxStatusArray = [];
+var intervalTypeArray = [];
 
 //関数定義
 function debug(){
@@ -36,6 +37,27 @@ function setCheckboxStatus(){
     }
   }
 }
+function setIntervalType(){
+  intervalTypeArray.length = 0;
+  var selectedIntervalType = document.forms.selectedIntervalType;
+  for (var i=0; i<selectedIntervalType.length; i++){
+    var id = selectedIntervalType[i].id;
+    var checked = selectedIntervalType[i].checked;
+    if (checked == true){
+      intervalTypeArray.push(id);
+    }
+  }
+  if (intervalTypeArray.length == 2){
+    iFlag = getRandomInt(0,2);
+    if (iFlag == "0"){
+      intervalType = "asc";
+    } else if (iFlag == "1"){
+      intervalType = "desc";
+    }
+  } else {
+    intervalType = intervalTypeArray[0];
+  }
+}
 function getRandomInt(min, max) {
   var min = Math.ceil(min);
   var max = Math.floor(max);
@@ -55,12 +77,7 @@ function setQuestion(){
   } else if (aFlag == "1"){
     accidental = "sharp"
   }
-  iFlag = getRandomInt(0,2);
-  if (iFlag == "0"){
-    intervalType = "asc";
-  } else if (iFlag == "1"){
-    intervalType = "desc";
-  }
+  setIntervalType();
   setSoundArray(accidental);
   firstSound = setFirstSound(intervalType);
   secondSound = setSecondSound(interval,intervalType,firstSound);
