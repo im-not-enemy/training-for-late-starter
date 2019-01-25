@@ -164,5 +164,3 @@ function exit(){
 document.getElementById("play_button").addEventListener("click",function(){setQuestion(); debug(); loop="true"; play();});
 document.getElementById("stop_button").addEventListener("click",function(){stop()});
 document.getElementById("exit_button").addEventListener("click",function(){exit()});
-
-document.getElementById("debug_button").addEventListener("click",function(){debug();});
