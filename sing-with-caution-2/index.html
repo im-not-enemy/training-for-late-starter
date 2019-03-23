@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>
+      Training
+    </title>
+  </head>
+
+  <body>
+    <nav class="teal">
+      <div class="nav-wrapper">
+        <a href="../" class="brand-logo left">
+          <i class="material-icons">music_note</i>
+        </a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div id="selectPage">
+        <div class="row">
+          <div class="center grey-text text-darken-3">
+            <h3>Choose your questions</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <form id="selectQuestion" class="col s10 m6 l6 xl6">
+            <label>Questions</label>
+            <input id="questions" type="number" value="0" min="0">
+          </form>
+          <div class="col s1 m3 l3 xl3"></div>
+        </div>
+<!--
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <div class="input-field col s10 m6 l6 xl6">
+              <select id="interval">
+              <option value="P1">完全1度</option>
+              <option value="m2">短2度</option>
+              <option value="M2">長2度</option>
+              <option value="m3">短3度</option>
+              <option value="M3">長3度</option>
+              <option value="P4">完全4度</option>
+              <option value="P5">完全5度</option>
+              <option value="m6">短6度</option>
+              <option value="M6">長6度</option>
+              <option value="m7">短7度</option>
+              <option value="M7">長7度</option>
+              <option value="P8">完全8度</option>
+            </select>
+            <label>Interval</label>
+          </div>
+          <div class="col s1 m3 l3 xl3"></div>
+        </div>
+
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <div class="input-field col s10 m6 l6 xl6">
+            <select id="intervalType">
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+            <label>IntervalType</label>
+          </div>
+          <div class="col s1 m3 l3 xl3"></div>
+        </div>
+
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <div class="input-field col s10 m6 l6 xl6">
+            <select id="accidental">
+              <option value="sharp">sharp</option>
+              <option value="flat">flat</option>
+            </select>
+            <label>Accidental</label>
+          </div>
+          <div class="col s1 m3 l3 xl3"></div>
+        </div>
+-->
+        <div class="row">
+          <div class="col s1 m3 l3 xl3"></div>
+          <button id="play_button" class="btn waves-effect waves-light" type="submit" name="action">play
+            <i class="material-icons right">play_arrow</i>
+          </button>
+        </div>
+      </div> <!-- selectPage -->
+
+
+
+
+      <div id="questionPage" class="hide card-panel">
+        <div class="row">
+          <div class="col s8 m10 l10 xl10"></div>
+            <button id="exit_button" class="btn waves-ffect waves-light col s4 m2 l2 xl2" type="" name="action">EXIT
+              <i class="material-icons right">exit_to_app</i>
+            </button>
+        </div>
+        <div class="row">
+          <div class="center grey-text text-darken-3">
+            <h3>Sing with caution</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s2 m3 l4 xl4"></div>
+          <div id="sheet"></div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12 l12 xl12 center">
+            <button id="play_firstSound" class="btn waves-effect waves-light" type="" name="action">PLAY
+              <i class="material-icons">play_arrow</i>
+            </button>
+            <button id="play_secondSound" class="btn waves-effect waves-light" type="" name="action">PLAY
+              <i class="material-icons">play_arrow</i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12 l12 xl12 center">
+            <button id="play_bothSound" class="btn waves-effect waves-light" type="" name="action">PLAY BOTH
+              <i class="material-icons">play_arrow</i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12 l12 xl12 center">
+            <div id="answers">
+              <button id="succeed_button" class="btn waves-effect waves-light" type="" name="action">SUCCEED</button>
+              <button id="failed_button" class="btn waves-effect waves-light" type="" name="action">&nbsp;FAILED&nbsp;</button>
+            </div>
+            <div id="next" class="hide">
+              <button id="next_button" class="btn waves-effect waves-light" type="" name="action">NEXT</button>
+            </div>
+          </div>
+        </div>
+      </div> <!-- questionPage -->
+
+      <div id="resultPage" class="hide">
+        <div class="row">
+          <div class="grey-text text-darken-3">
+            <h3>This is result</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div id="result" class="card-panel"></div>
+          <button id="top_button" class="btn waves-ffect waves-light" type="" name="action">TOP</button>
+        </div>
+      </div> <!-- resultPage -->
+
+        <form id="selectedIntervals" action="#">
+          <div class="row">
+            <div class="col s3 m3 l3 xl3 center">
+              <p><label><input id="P1" type="checkbox" class="filled-in" checked="checked" /><span>P1</span></label>
+              <p><label><input id="m2" type="checkbox" class="filled-in" checked="checked" /><span>m2</span></label>
+              <p><label><input id="M2" type="checkbox" class="filled-in" checked="checked" /><span>M2</span></label>
+            </div>
+            <div class="col s3 m3 l3 xl3 center">
+              <p><label><input id="m3" type="checkbox" class="filled-in" checked="checked" /><span>m3</span></label>
+              <p><label><input id="M3" type="checkbox" class="filled-in" checked="checked" /><span>M3</span></label>
+              <p><label><input id="P4" type="checkbox" class="filled-in" checked="checked" /><span>P4</span></label>
+            </div>
+            <div class="col s3 m3 l3 xl3 center">
+              <p><label><input id="P5" type="checkbox" class="filled-in" checked="checked" /><span>P5</span></label>
+              <p><label><input id="m6" type="checkbox" class="filled-in" checked="checked" /><span>m6</span></label>
+              <p><label><input id="M6" type="checkbox" class="filled-in" checked="checked" /><span>M6</span></label>
+            </div>
+            <div class="col s3 m3 l3 xl3 center">
+              <p><label><input id="m7" type="checkbox" class="filled-in" checked="checked" /><span>m7</span></label>
+              <p><label><input id="M7" type="checkbox" class="filled-in" checked="checked" /><span>M7</span></label>
+              <p><label><input id="P8" type="checkbox" class="filled-in" checked="checked" /><span>P8</span></label>
+            </div>
+          </div>
+        </form>
+
+        <form id="selectedIntervalType" action="#">
+          <div class="row">
+            <div class="col s6 m6 l6 xl6 center">
+              <p><label><input id="asc" type="checkbox" class="filled-in" checked="checked" /><span>asc</span></label>
+            </div>
+            <div class="col s6 m6 l6 xl6 center">
+              <p><label><input id="desc" type="checkbox" class="filled-in" checked="checked" /><span>desc</span></label>
+            </div>
+          </div>
+        </form>
+    </div> <!-- container -->
+
+    <!-- Inport jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--    <script src="https://tonejs.github.io/build/Tone.min.js"></script> -->
+    <script src="https://tonejs.github.io/build/Tone.js"></script>
+    <script src="../sing-with-caution/js/abcjs_basic_5.3.5-min.js"></script>
+    <script src="./js/sing_with_caution_2.js"></script>
+  </body>
+</html>
